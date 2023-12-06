@@ -1,0 +1,23 @@
+[
+  {"city": "Boston", "averageRent": 3970},
+  {"city": "Fall River", "averageRent": 1853},
+  {"city": "Worcester", "averageRent": 1819},
+  {"city": "Cambridge", "averageRent": 3658},
+  {"city": "Somerville", "averageRent": 3504},
+  {"city": "Quincy", "averageRent": 2772},
+  {"city": "New Bedford", "averageRent": 1835},
+  {"city": "Lowell", "averageRent": 2124},
+  {"city": "Waltham", "averageRent": 3095},
+  {"city": "Weymouth Town", "averageRent": 2426},
+  {"city": "Salem", "averageRent": 2793},
+  {"city": "Medford", "averageRent": 3308},
+  {"city": "Lynn", "averageRent": 2058},
+  {"city": "Brockton", "averageRent": 1861},
+  {"city": "Malden", "averageRent": 2568},
+  {"city": "Newton", "averageRent": 3520},
+  {"city": "Chelsea", "averageRent": 2650},
+  {"city": "Watertown", "averageRent": 3237},
+  {"city": "Melrose", "averageRent": 3058},
+  {"city": "Revere", "averageRent": 2662},
+  {"city": "Woburn", "averageRent": 2650}
+]
