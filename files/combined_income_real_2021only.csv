@@ -1,0 +1,229 @@
+Neighborhood,Bracket,Count
+Brighton,    Total households,16355
+Brighton,"        Less than $10,000",939
+Brighton,"        $10,000 to $14,999",781
+Brighton,"        $15,000 to $24,999",808
+Brighton,"        $25,000 to $34,999",614
+Brighton,"        $35,000 to $49,999",1185
+Brighton,"        $50,000 to $74,999",2216
+Brighton,"        $75,000 to $99,999",2332
+Brighton,"        $100,000 to $149,999",4145
+Brighton,"        $150,000 to $199,999",1830
+Brighton,"        $200,000 or more",1505
+Brighton,        Median household income (dollars),954246
+Allston,    Total households,2990
+Allston,"        Less than $10,000",408
+Allston,"        $10,000 to $14,999",119
+Allston,"        $15,000 to $24,999",231
+Allston,"        $25,000 to $34,999",127
+Allston,"        $35,000 to $49,999",425
+Allston,"        $50,000 to $74,999",606
+Allston,"        $75,000 to $99,999",254
+Allston,"        $100,000 to $149,999",489
+Allston,"        $150,000 to $199,999",201
+Allston,"        $200,000 or more",130
+Allston,        Median household income (dollars),110989
+Fenway,    Total households,7513
+Fenway,"        Less than $10,000",1705
+Fenway,"        $10,000 to $14,999",537
+Fenway,"        $15,000 to $24,999",773
+Fenway,"        $25,000 to $34,999",466
+Fenway,"        $35,000 to $49,999",698
+Fenway,"        $50,000 to $74,999",1048
+Fenway,"        $75,000 to $99,999",547
+Fenway,"        $100,000 to $149,999",723
+Fenway,"        $150,000 to $199,999",385
+Fenway,"        $200,000 or more",631
+Fenway,        Median household income (dollars),288248
+Back Bay,    Total households,9814
+Back Bay,"        Less than $10,000",1023
+Back Bay,"        $10,000 to $14,999",296
+Back Bay,"        $15,000 to $24,999",354
+Back Bay,"        $25,000 to $34,999",365
+Back Bay,"        $35,000 to $49,999",498
+Back Bay,"        $50,000 to $74,999",1077
+Back Bay,"        $75,000 to $99,999",887
+Back Bay,"        $100,000 to $149,999",1547
+Back Bay,"        $150,000 to $199,999",887
+Back Bay,"        $200,000 or more",2880
+Back Bay,        Median household income (dollars),666960
+Beacon Hill,    Total households,4981
+Beacon Hill,"        Less than $10,000",298
+Beacon Hill,"        $10,000 to $14,999",125
+Beacon Hill,"        $15,000 to $24,999",121
+Beacon Hill,"        $25,000 to $34,999",87
+Beacon Hill,"        $35,000 to $49,999",156
+Beacon Hill,"        $50,000 to $74,999",656
+Beacon Hill,"        $75,000 to $99,999",495
+Beacon Hill,"        $100,000 to $149,999",915
+Beacon Hill,"        $150,000 to $199,999",486
+Beacon Hill,"        $200,000 or more",1642
+Beacon Hill,        Median household income (dollars),387170
+West End,    Total households,1226
+West End,"        Less than $10,000",151
+West End,"        $10,000 to $14,999",76
+West End,"        $15,000 to $24,999",33
+West End,"        $25,000 to $34,999",11
+West End,"        $35,000 to $49,999",90
+West End,"        $50,000 to $74,999",139
+West End,"        $75,000 to $99,999",73
+West End,"        $100,000 to $149,999",138
+West End,"        $150,000 to $199,999",199
+West End,"        $200,000 or more",316
+West End,        Median household income (dollars),112045
+Downtown,    Total households,0
+Downtown,"        Less than $10,000",0
+Downtown,"        $10,000 to $14,999",0
+Downtown,"        $15,000 to $24,999",0
+Downtown,"        $25,000 to $34,999",0
+Downtown,"        $35,000 to $49,999",0
+Downtown,"        $50,000 to $74,999",0
+Downtown,"        $75,000 to $99,999",0
+Downtown,"        $100,000 to $149,999",0
+Downtown,"        $150,000 to $199,999",0
+Downtown,"        $200,000 or more",0
+Downtown,        Median household income (dollars),0
+North End,    Total households,5732
+North End,"        Less than $10,000",213
+North End,"        $10,000 to $14,999",142
+North End,"        $15,000 to $24,999",264
+North End,"        $25,000 to $34,999",143
+North End,"        $35,000 to $49,999",227
+North End,"        $50,000 to $74,999",918
+North End,"        $75,000 to $99,999",703
+North End,"        $100,000 to $149,999",1336
+North End,"        $150,000 to $199,999",713
+North End,"        $200,000 or more",1073
+North End,        Median household income (dollars),430351
+Charlestown,    Total households,9278
+Charlestown,"        Less than $10,000",316
+Charlestown,"        $10,000 to $14,999",466
+Charlestown,"        $15,000 to $24,999",550
+Charlestown,"        $25,000 to $34,999",404
+Charlestown,"        $35,000 to $49,999",364
+Charlestown,"        $50,000 to $74,999",733
+Charlestown,"        $75,000 to $99,999",674
+Charlestown,"        $100,000 to $149,999",1437
+Charlestown,"        $150,000 to $199,999",1178
+Charlestown,"        $200,000 or more",3156
+Charlestown,        Median household income (dollars),836887
+East Boston,    Total households,16925
+East Boston,"        Less than $10,000",1028
+East Boston,"        $10,000 to $14,999",1087
+East Boston,"        $15,000 to $24,999",1016
+East Boston,"        $25,000 to $34,999",1008
+East Boston,"        $35,000 to $49,999",1543
+East Boston,"        $50,000 to $74,999",3127
+East Boston,"        $75,000 to $99,999",2216
+East Boston,"        $100,000 to $149,999",2506
+East Boston,"        $150,000 to $199,999",1523
+East Boston,"        $200,000 or more",1871
+East Boston,        Median household income (dollars),823957
+South End,    Total households,8220
+South End,"        Less than $10,000",729
+South End,"        $10,000 to $14,999",593
+South End,"        $15,000 to $24,999",612
+South End,"        $25,000 to $34,999",336
+South End,"        $35,000 to $49,999",511
+South End,"        $50,000 to $74,999",674
+South End,"        $75,000 to $99,999",694
+South End,"        $100,000 to $149,999",983
+South End,"        $150,000 to $199,999",856
+South End,"        $200,000 or more",2232
+South End,        Median household income (dollars),557169
+South Boston,    Total households,13803
+South Boston,"        Less than $10,000",867
+South Boston,"        $10,000 to $14,999",575
+South Boston,"        $15,000 to $24,999",794
+South Boston,"        $25,000 to $34,999",607
+South Boston,"        $35,000 to $49,999",731
+South Boston,"        $50,000 to $74,999",1205
+South Boston,"        $75,000 to $99,999",1081
+South Boston,"        $100,000 to $149,999",2388
+South Boston,"        $150,000 to $199,999",1765
+South Boston,"        $200,000 or more",3790
+South Boston,        Median household income (dollars),1000383
+Waterfront,    Total households,0
+Waterfront,"        Less than $10,000",0
+Waterfront,"        $10,000 to $14,999",0
+Waterfront,"        $15,000 to $24,999",0
+Waterfront,"        $25,000 to $34,999",0
+Waterfront,"        $35,000 to $49,999",0
+Waterfront,"        $50,000 to $74,999",0
+Waterfront,"        $75,000 to $99,999",0
+Waterfront,"        $100,000 to $149,999",0
+Waterfront,"        $150,000 to $199,999",0
+Waterfront,"        $200,000 or more",0
+Waterfront,        Median household income (dollars),0
+Mission Hill,    Total households,5018
+Mission Hill,"        Less than $10,000",608
+Mission Hill,"        $10,000 to $14,999",883
+Mission Hill,"        $15,000 to $24,999",325
+Mission Hill,"        $25,000 to $34,999",235
+Mission Hill,"        $35,000 to $49,999",615
+Mission Hill,"        $50,000 to $74,999",866
+Mission Hill,"        $75,000 to $99,999",424
+Mission Hill,"        $100,000 to $149,999",471
+Mission Hill,"        $150,000 to $199,999",373
+Mission Hill,"        $200,000 or more",218
+Mission Hill,        Median household income (dollars),137956
+Roxbury,    Total households,18269
+Roxbury,"        Less than $10,000",3100
+Roxbury,"        $10,000 to $14,999",1765
+Roxbury,"        $15,000 to $24,999",2130
+Roxbury,"        $25,000 to $34,999",1679
+Roxbury,"        $35,000 to $49,999",1962
+Roxbury,"        $50,000 to $74,999",2325
+Roxbury,"        $75,000 to $99,999",1528
+Roxbury,"        $100,000 to $149,999",1875
+Roxbury,"        $150,000 to $199,999",877
+Roxbury,"        $200,000 or more",1028
+Roxbury,        Median household income (dollars),602771
+Dorchester,    Total households,45227
+Dorchester,"        Less than $10,000",4192
+Dorchester,"        $10,000 to $14,999",3192
+Dorchester,"        $15,000 to $24,999",4571
+Dorchester,"        $25,000 to $34,999",3567
+Dorchester,"        $35,000 to $49,999",4094
+Dorchester,"        $50,000 to $74,999",5630
+Dorchester,"        $75,000 to $99,999",4972
+Dorchester,"        $100,000 to $149,999",6693
+Dorchester,"        $150,000 to $199,999",4318
+Dorchester,"        $200,000 or more",3998
+Dorchester,        Median household income (dollars),1898102
+Roslindale,    Total households,11441
+Roslindale,"        Less than $10,000",437
+Roslindale,"        $10,000 to $14,999",503
+Roslindale,"        $15,000 to $24,999",757
+Roslindale,"        $25,000 to $34,999",506
+Roslindale,"        $35,000 to $49,999",843
+Roslindale,"        $50,000 to $74,999",1479
+Roslindale,"        $75,000 to $99,999",1437
+Roslindale,"        $100,000 to $149,999",1941
+Roslindale,"        $150,000 to $199,999",1664
+Roslindale,"        $200,000 or more",1874
+Roslindale,        Median household income (dollars),743028
+Hyde Park,    Total households,13302
+Hyde Park,"        Less than $10,000",968
+Hyde Park,"        $10,000 to $14,999",798
+Hyde Park,"        $15,000 to $24,999",916
+Hyde Park,"        $25,000 to $34,999",592
+Hyde Park,"        $35,000 to $49,999",983
+Hyde Park,"        $50,000 to $74,999",1548
+Hyde Park,"        $75,000 to $99,999",1904
+Hyde Park,"        $100,000 to $149,999",2565
+Hyde Park,"        $150,000 to $199,999",1574
+Hyde Park,"        $200,000 or more",1454
+Hyde Park,        Median household income (dollars),650555
+West Roxbury,    Total households,10806
+West Roxbury,"        Less than $10,000",394
+West Roxbury,"        $10,000 to $14,999",412
+West Roxbury,"        $15,000 to $24,999",696
+West Roxbury,"        $25,000 to $34,999",741
+West Roxbury,"        $35,000 to $49,999",876
+West Roxbury,"        $50,000 to $74,999",1079
+West Roxbury,"        $75,000 to $99,999",1179
+West Roxbury,"        $100,000 to $149,999",2132
+West Roxbury,"        $150,000 to $199,999",1085
+West Roxbury,"        $200,000 or more",2212
+West Roxbury,        Median household income (dollars),621585
