@@ -5,7 +5,8 @@ This template will help you get started with your project. Please look through a
 ## The GitHub Pages Website
 
 Make sure you publish your project to github pages, and put the URL here: 
-
+https://cosi116a-brandeis-infovis-fall23.github.io/cosi-116a-final-project-grad-team7/
+(Note: it does not work on github page, please download it, it work perfectly on the local machine)
 ### Github Pages
 
 For your final project, you must render your project as a Github Page.  Github pages is a feature of GitHub repositories that gives you a publicly available URL that loads your repository.  The link to the page corresponding to your repository should be written into the readme file of your repository.
