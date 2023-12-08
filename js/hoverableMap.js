@@ -138,8 +138,8 @@ function hoverEffects() {
       // Prepare the SVG for the histogram
       const histogramSvg = d3
         .create("svg")
-        .attr("width", 350)
-        .attr("height", 300);
+        .attr("width", 300)
+        .attr("height", 200);
 
       // Create scales for your histogram based on the data
       const xScale = d3
@@ -150,8 +150,8 @@ function hoverEffects() {
 
       const yScale = d3
         .scaleLinear()
-        .domain([0, d3.max(dataEntries, (d) => d[1] * 1.05)])
-        .range([300, 0]);
+        .domain([0, d3.max(dataEntries, (d) => d[1] * 1.1)])
+        .range([200, 0]);
 
       // Append the bars to the SVG
       histogramSvg
@@ -162,8 +162,10 @@ function hoverEffects() {
         .attr("x", (d) => xScale(d[0]))
         .attr("y", (d) => yScale(d[1]))
         .attr("width", xScale.bandwidth())
-        .attr("height", (d) => 300 - yScale(d[1]))
+        .attr("height", (d) => 200 - yScale(d[1]))
         .attr("fill", "steelblue");
+
+      const totalCount = dataEntries.reduce((sum, entry) => sum + entry[1], 0);
 
       histogramSvg
         .selectAll(".bar-label")
@@ -174,7 +176,7 @@ function hoverEffects() {
         .attr("x", (d) => xScale(d[0]) + xScale.bandwidth() / 2)
         .attr("y", (d) => yScale(d[1]) - 5) // adjust the 5 pixels offset as needed
         .attr("text-anchor", "middle")
-        .text((d) => d[1]); // This will display the count on top of each bar
+        .text(d => `${((d[1] / totalCount) * 100).toFixed(0)}%`);
 
       // d3.select(this).style("fill", "lightblue");
       tooltip.transition().duration(200).style("opacity", 0.9);
