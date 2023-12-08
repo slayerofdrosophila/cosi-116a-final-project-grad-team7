@@ -243,7 +243,7 @@ function createHistogram(areaName) {
 
 function updateComparisonContainer() {
   const container = d3.select("#comparison-data-container").node();
-  container.innerHTML = ""; // Clear previous content
+  // container.innerHTML = ""; // Clear previous content
 
   selectedNeighborhoods.forEach((areaName) => {
     const histogramSvg = createHistogram(areaName);
@@ -307,4 +307,32 @@ function gradientScale() {
     .append("g")
     .attr("transform", `translate(0, ${20 + height})`)
     .call(legendAxis);
+
+  // Title below the scale
+  svg
+    .append("text")
+    .attr("x", 40)
+    .attr("y", 60)
+    .text("Average Property Price")
+    .attr("font-size", "12px")
+    .attr("fill", "#000");
+}
+
+//when user click this button, clean up the comparison area
+document.getElementById("resetBtn").addEventListener("click", function () {
+  const container = d3.select("#comparison-data-container").node();
+  container.innerHTML = ""; // Clear previous content
+});
+
+//when the area is in the comparison, highlight the area
+function checkDuplicate() {
+  // Find the key in the areaMapping object that has the value equal to areaName
+  const pathId = Object.keys(areaMapping).find(
+    (key) => areaMapping[key] === areaName
+  );
+
+  // If the pathId is found, select the path and change its color
+  if (pathId) {
+    d3.select(`#${pathId}`).style("fill", "red"); // Change this color to your preferred highlight color
+  }
 }
