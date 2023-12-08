@@ -1,13 +1,13 @@
 // when user hover the area of the map, the name of the area will pop up
-// Load the SVG file
 
-// Load the income data from the CSV file
 let neighborhoodIncomeData = {};
 let neighborhoodHighLevelIncomeData = {};
 
 // For the click compare thing
 let selectedNeighborhoods = [];
 let selectedElements = [];
+
+const clonedNeighborhoods = new Set(['Mid Dorchester', 'Mattapan']);
 
 d3.csv("files/combined_income_real_2021only.csv").then((data) => {
   data.forEach((d) => {
@@ -32,16 +32,37 @@ d3.csv("files/combined_income_real_2021only.csv").then((data) => {
     }
   });
 
+  // aggregate
+  for (let neighborhoodName of Object.keys(neighborhoodIncomeData)) {
+    if (neighborhoodName === 'Allston' || neighborhoodName === 'Brighton') {
+      neighborhoodIncomeData['Allston + Brighton'] = aggregateNeighborhoodData('Allston', 'Brighton', neighborhoodIncomeData);
+    }
+
+    if (neighborhoodName === 'Mission Hill' || neighborhoodName === 'Jamaica Plain') {
+      neighborhoodIncomeData['Mission Hill + Jamaica Plain'] = aggregateNeighborhoodData('Mission Hill', 'Jamaica Plain', neighborhoodIncomeData);
+    }
+
+    if (neighborhoodName === 'Fenway' || neighborhoodName === 'Kenmore') {
+      neighborhoodIncomeData['Fenway + Kenmore'] = aggregateNeighborhoodData('Fenway', 'Kenmore', neighborhoodIncomeData);
+    }
+  }
+
+  // Clone Dorchester data for Mid Dorchester and Mattapan (because the ACS doesn't care about these divisions, apparently)
+  neighborhoodIncomeData['Mid Dorchester'] = {...neighborhoodIncomeData['Dorchester']};
+  neighborhoodIncomeData['Mattapan'] = {...neighborhoodIncomeData['Dorchester']};
+
+  neighborhoodHighLevelIncomeData['Mid Dorchester'] = {...neighborhoodHighLevelIncomeData['Dorchester']};
+  neighborhoodHighLevelIncomeData['Mattapan'] = {...neighborhoodHighLevelIncomeData['Dorchester']};
+
   d3.xml("../images/boston.svg").then((data) => {
     d3.select("#map-container").node().append(data.documentElement);
-    //append the scale for user for better understanding
     gradientScale();
-    hoverEffects(); // This now uses the loaded income data
+    hoverEffects();
   });
 });
 
 const areaMapping = {
-  Path_1: "Brighton + Allston",
+  Path_1: "Allston + Brighton",
   Path_2: "Charlestown",
   Path_3: "East Boston",
   Path_4: "North End",
@@ -81,12 +102,11 @@ const avgPropertyPriceMapping = {
   "West End": 418939.65,
   "West Roxbury": 801997.48,
   Mattapan: 555863.4,
-  "Fenway + Kenmore": 1194750.286,
-  "Mission Hill + Jamaica Plain": 1053993.927,
-  "Brighton + Allston": 698900.5284,
+  "Fenway + Kenmore": 1194750.29,
+  "Mission Hill + Jamaica Plain": 1053993.93,
+  "Allston + Brighton": 698900.53,
 };
 
-// Example color scale - adjust as needed
 const colorScale = d3
   .scaleLinear()
   .domain([
@@ -128,20 +148,16 @@ function hoverEffects() {
     .on("mouseover", function (event, d) {
       const pathId = d3.select(this).attr("id");
       const areaName = areaMapping[pathId];
-      const avgPrice = avgPropertyPriceMapping[areaName];
+      const avgPrice = Math.round(avgPropertyPriceMapping[areaName] / 1000) * 1000;
 
       const incomeData = neighborhoodIncomeData[areaName] || {};
       const dataEntries = Object.entries(incomeData);
 
-      console.log(dataEntries);
-
-      // Prepare the SVG for the histogram
       const histogramSvg = d3
         .create("svg")
         .attr("width", 300)
         .attr("height", 200);
 
-      // Create scales for your histogram based on the data
       const xScale = d3
         .scaleBand()
         .domain(dataEntries.map((d) => d[0]))
@@ -184,14 +200,25 @@ function hoverEffects() {
         .html(
           "<h3>" +
             areaName +
-            `<br>Avg. Property Price: ${avgPrice}` +
+            `<br>Avg. Property Price: $${avgPrice}` +
             "</h3>" +
             "<h5> Household Income Distribution: </h5>"
         )
         .style("left", event.pageX + 10 + "px")
         .style("top", event.pageY - 28 + "px");
 
+      // If this is cloned
+      if (clonedNeighborhoods.has(areaName)) {
+        const disclaimer = document.createElement("p");
+        disclaimer.innerHTML = "<em>Note: Data for this neighborhood is estimated based on Dorchester's data.</em>";
+        disclaimer.style.fontSize = "0.8em";
+        disclaimer.style.textDecoration = "underline";
+
+        tooltip.node().appendChild(disclaimer);
+      }
       tooltip.node().appendChild(histogramSvg.node());
+
+
     })
 
     .on("mouseout", function (d) {
@@ -241,6 +268,8 @@ function createHistogram(areaName) {
     .attr("height", (d) => height - 125 - yScale(d[1]))
     .attr("fill", "steelblue");
 
+  const totalCount = dataEntries.reduce((sum, entry) => sum + entry[1], 0);
+
   histogramSvg
     .selectAll(".bar-label")
     .data(dataEntries)
@@ -250,7 +279,7 @@ function createHistogram(areaName) {
     .attr("x", (d) => xScale(d[0]) + xScale.bandwidth() / 2)
     .attr("y", (d) => yScale(d[1]) - 5)
     .attr("text-anchor", "middle")
-    .text((d) => d[1]); // display count on top of each
+    .text(d => `${((d[1] / totalCount) * 100).toFixed(0)}%`);
     
   // Append vertical labels
   histogramSvg.selectAll(".label")
@@ -361,4 +390,28 @@ function renderSelectedArea() {
 
     container.appendChild(histogramSvg);
   });
+}
+
+function aggregateNeighborhoodData(neighborhood1, neighborhood2, neighborhoodIncomeData) {
+  const aggregatedData = {};
+
+  console.log(neighborhood1)
+  console.log(neighborhood2)
+
+  console.log(neighborhoodIncomeData[neighborhood1])
+  console.log(neighborhoodIncomeData[neighborhood2])
+
+  if (neighborhoodIncomeData[neighborhood2] == undefined){
+    Object.keys(neighborhoodIncomeData[neighborhood1]).forEach(bracket => {
+      aggregatedData[bracket] = (neighborhoodIncomeData[neighborhood1][bracket] || 0);
+    });
+    return aggregatedData
+  }
+
+  Object.keys(neighborhoodIncomeData[neighborhood1]).forEach(bracket => {
+    aggregatedData[bracket] = (neighborhoodIncomeData[neighborhood1][bracket] || 0) +
+                              (neighborhoodIncomeData[neighborhood2][bracket] || 0);
+  });
+
+  return aggregatedData;
 }
