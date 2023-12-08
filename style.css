@@ -111,3 +111,31 @@ h3 {
 	opacity: 0;
 	transition: opacity 0.3s;
 }
+
+.vis-comparison {
+	display: grid;
+	grid-template-rows: auto auto 1fr;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+		"title title"
+		"description description"
+		"map comparison";
+}
+
+#comparison-title {
+	justify-self: center;
+	grid-area: title;
+}
+
+#comparison-description {
+	justify-self: center;
+	grid-area: description;
+}
+
+#map-container {
+	grid-area: map;
+}
+
+#comparison-container {
+	grid-area: comparison;
+}
