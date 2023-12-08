@@ -105,16 +105,15 @@ function hoverEffects() {
       return colorScale(avgPrice);
     })
     .on("click", function (event, d) {
+      const pathElement = d3.select(this);
       const pathId = d3.select(this).attr("id");
       const areaName = areaMapping[pathId];
 
-      const index = selectedNeighborhoods.indexOf(areaName);
-      if (index > -1) {
-        selectedNeighborhoods.splice(index, 1); // Remove from array
-      } else {
-        selectedNeighborhoods.push(areaName); // Add to array
+      if (!isNeighborhoodSelected(areaName)) {
+        selectedNeighborhoods.push(areaName);
+        pathElement.style("fill", "red");
       }
-      updateComparisonContainer();
+      renderSelectedArea();
     })
     .on("mouseover", function (event, d) {
       const pathId = d3.select(this).attr("id");
@@ -167,7 +166,7 @@ function hoverEffects() {
         .attr("text-anchor", "middle")
         .text((d) => d[1]); // This will display the count on top of each bar
 
-      d3.select(this).style("fill", "lightblue");
+      // d3.select(this).style("fill", "lightblue");
       tooltip.transition().duration(200).style("opacity", 0.9);
       tooltip
         .html(
@@ -186,7 +185,7 @@ function hoverEffects() {
     .on("mouseout", function (d) {
       const areaName = areaMapping[d3.select(this).attr("id")];
       const avgPrice = avgPropertyPriceMapping[areaName];
-      d3.select(this).style("fill", colorScale(avgPrice));
+      // d3.select(this).style("fill", colorScale(avgPrice));
       tooltip.transition().duration(500).style("opacity", 0);
     });
 }
@@ -239,21 +238,6 @@ function createHistogram(areaName) {
     .text((d) => d[1]); // This will display the count on top of each bar
 
   return histogramSvg.node();
-}
-
-function updateComparisonContainer() {
-  const container = d3.select("#comparison-data-container").node();
-  // container.innerHTML = ""; // Clear previous content
-
-  selectedNeighborhoods.forEach((areaName) => {
-    const histogramSvg = createHistogram(areaName);
-
-    container.appendChild(histogramSvg);
-
-    const heading = document.createElement("div");
-    heading.innerHTML = `<h3>${areaName}</h3>`;
-    container.appendChild(heading);
-  });
 }
 
 function gradientScale() {
@@ -320,19 +304,27 @@ function gradientScale() {
 
 //when user click this button, clean up the comparison area
 document.getElementById("resetBtn").addEventListener("click", function () {
-  const container = d3.select("#comparison-data-container").node();
-  container.innerHTML = ""; // Clear previous content
+  // Clear previous content
+  selectedNeighborhoods = [];
+  renderSelectedArea();
 });
 
-//when the area is in the comparison, highlight the area
-function checkDuplicate() {
-  // Find the key in the areaMapping object that has the value equal to areaName
-  const pathId = Object.keys(areaMapping).find(
-    (key) => areaMapping[key] === areaName
-  );
+//avoid double selected the area
+function isNeighborhoodSelected(neighborhood) {
+  return selectedNeighborhoods.includes(neighborhood);
+}
 
-  // If the pathId is found, select the path and change its color
-  if (pathId) {
-    d3.select(`#${pathId}`).style("fill", "red"); // Change this color to your preferred highlight color
-  }
+//render out the selected area
+function renderSelectedArea() {
+  const container = d3.select("#comparison-data-container").node();
+  container.innerHTML = "";
+  selectedNeighborhoods.forEach((areaName) => {
+    const histogramSvg = createHistogram(areaName);
+
+    container.appendChild(histogramSvg);
+
+    const heading = document.createElement("div");
+    heading.innerHTML = `<h3>${areaName}</h3>`;
+    container.appendChild(heading);
+  });
 }
