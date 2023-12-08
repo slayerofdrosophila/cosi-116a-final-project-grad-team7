@@ -140,12 +140,23 @@ function hoverEffects() {
                   .attr("height", d => 100 - yScale(d[1]))
                   .attr("fill", "steelblue");
 
+      histogramSvg.selectAll(".bar-label")
+                  .data(dataEntries)
+                  .enter()
+                  .append("text")
+                  .attr("class", "bar-label")
+                  .attr("x", d => xScale(d[0]) + xScale.bandwidth() / 2)
+                  .attr("y", d => yScale(d[1]) - 5) // adjust the 5 pixels offset as needed
+                  .attr("text-anchor", "middle")
+                  .text(d => d[1]); // This will display the count on top of each bar
+
 
       d3.select(this).style("fill", "lightblue");
       tooltip.transition()
              .duration(200)
              .style("opacity", .9);
-      tooltip.html("<h3>" + areaName + "</h3>" + `<br>Avg. Property Price: ${avgPrice}`)
+      tooltip.html("<h3>" + areaName + `<br>Avg. Property Price: ${avgPrice}` + "</h3>"
+              + "<h5> Household Income Distribution: </h5>")
              .style("left", (event.pageX + 10) + "px")
              .style("top", (event.pageY - 28) + "px");
       tooltip.node().appendChild(histogramSvg.node());
