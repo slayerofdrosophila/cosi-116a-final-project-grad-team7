@@ -7,6 +7,7 @@ let neighborhoodHighLevelIncomeData = {};
 
 // For the click compare thing
 let selectedNeighborhoods = [];
+let selectedElements = [];
 
 d3.csv("files/combined_income_real_2021only.csv").then((data) => {
   data.forEach((d) => {
@@ -108,10 +109,21 @@ function hoverEffects() {
       const pathElement = d3.select(this);
       const pathId = d3.select(this).attr("id");
       const areaName = areaMapping[pathId];
-
+      //check if we selected the right stroke
+      console.log(pathElement.attr("stroke"));
       if (!isNeighborhoodSelected(areaName)) {
         selectedNeighborhoods.push(areaName);
-        pathElement.style("fill", "red");
+
+        //get the original color
+        let color = {};
+        color["element"] = pathElement;
+        color["color"] = pathElement.attr("fill");
+
+        selectedElements.push(color);
+
+        //change the style of the selected area
+        pathElement.style("stroke", "blue");
+        pathElement.style("stroke-width", 5);
       }
       renderSelectedArea();
     })
@@ -307,6 +319,12 @@ document.getElementById("resetBtn").addEventListener("click", function () {
   // Clear previous content
   selectedNeighborhoods = [];
   renderSelectedArea();
+
+  //reset the color of selected area
+  selectedElements.forEach((pathElement) => {
+    pathElement.element.style("stroke", "#000");
+    pathElement.element.style("stroke-width", 1);
+  });
 });
 
 //avoid double selected the area
