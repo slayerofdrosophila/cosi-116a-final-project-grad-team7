@@ -13,7 +13,7 @@ h3 {
 
 /* Your text should be in a nice narrow column */
 .content-column {
-	max-width: 650px;
+	max-width: 890px;
 	margin: 40px auto;
 }
 
@@ -27,13 +27,13 @@ h3 {
 }
 
 .vis-holder-half {
-    width: 50%;
-    height: 100%;
+	width: 50%;
+	height: 100%;
 }
 
 /* Fork on GitHub ribbon via https://codepo8.github.io/css-fork-on-github-ribbon/# */
 #forkongithub a {
-	background: #00F;
+	background: rgb(217, 148, 70);
 	color: #fff;
 	text-decoration: none;
 	font-family: arial, sans-serif;
@@ -110,5 +110,4 @@ h3 {
 	pointer-events: none;
 	opacity: 0;
 	transition: opacity 0.3s;
-  }
-  
+}
