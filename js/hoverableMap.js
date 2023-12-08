@@ -1,14 +1,13 @@
 // when user hover the area of the map, the name of the area will pop up
 // Load the SVG file
-// d3.xml("../images/boston.svg").then((data) => {
-//   d3.select("#map-container").node().append(data.documentElement);
-//   hoverEffects();
-// });
 
 
 // Load the income data from the CSV file
 let neighborhoodIncomeData = {};
 let neighborhoodHighLevelIncomeData = {};
+
+// For the click compare thing
+let selectedNeighborhoods = [];
 
 d3.csv("files/combined_income_real_2021only.csv").then(data => {
   data.forEach(d => {
@@ -104,6 +103,18 @@ function hoverEffects() {
       const avgPrice = avgPropertyPriceMapping[areaName];
       return colorScale(avgPrice);
     })
+    .on("click", function (event, d) {
+        const pathId = d3.select(this).attr("id");
+        const areaName = areaMapping[pathId];
+
+        const index = selectedNeighborhoods.indexOf(areaName);
+        if (index > -1) {
+            selectedNeighborhoods.splice(index, 1);  // Remove from array
+        } else {
+            selectedNeighborhoods.push(areaName);  // Add to array
+        }
+        updateComparisonContainer();
+    })
     .on("mouseover", function (event, d) {
       const pathId = d3.select(this).attr("id");
       const areaName = areaMapping[pathId];
@@ -116,18 +127,18 @@ function hoverEffects() {
 
       // Prepare the SVG for the histogram
       const histogramSvg = d3.create("svg")
-                             .attr("width", 200)
-                             .attr("height", 100);
+                             .attr("width", 300)
+                             .attr("height", 500);
 
       // Create scales for your histogram based on the data
       const xScale = d3.scaleBand()
                        .domain(dataEntries.map(d => d[0]))
-                       .range([0, 200])
+                       .range([0, 300])
                        .padding(0.1);
 
       const yScale = d3.scaleLinear()
-                       .domain([0, d3.max(dataEntries, d => d[1])])
-                       .range([100, 0]);
+                       .domain([0, d3.max(dataEntries, d => d[1]*1.05)])
+                       .range([300, 0]);
 
       // Append the bars to the SVG
       histogramSvg.selectAll("rect")
@@ -137,7 +148,7 @@ function hoverEffects() {
                   .attr("x", d => xScale(d[0]))
                   .attr("y", d => yScale(d[1]))
                   .attr("width", xScale.bandwidth())
-                  .attr("height", d => 100 - yScale(d[1]))
+                  .attr("height", d => 300 - yScale(d[1]))
                   .attr("fill", "steelblue");
 
       histogramSvg.selectAll(".bar-label")
@@ -173,5 +184,15 @@ function hoverEffects() {
 }
 
 
-// Data
+function updateComparisonContainer() {
+  const container = d3.select("#comparison-data-container");
+  container.html("");  // Clear previous content
+
+  selectedNeighborhoods.forEach(areaName => {
+      container.append("div")
+               .attr("class", "neighborhood-data")
+               .text(areaName + ": " + avgPropertyPriceMapping[areaName]);
+      // Add more details as needed
+  });
+}
 

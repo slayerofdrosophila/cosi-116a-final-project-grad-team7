@@ -26,6 +26,11 @@ h3 {
 	align-items: center;
 }
 
+.vis-holder-half {
+    width: 50%;
+    height: 100%;
+}
+
 /* Fork on GitHub ribbon via https://codepo8.github.io/css-fork-on-github-ribbon/# */
 #forkongithub a {
 	background: #00F;
