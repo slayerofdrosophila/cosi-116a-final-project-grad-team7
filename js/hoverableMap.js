@@ -31,8 +31,6 @@ d3.csv("files/combined_income_real_2021only.csv").then((data) => {
     }
   });
 
-  console.log(neighborhoodIncomeData);
-
   d3.xml("../images/boston.svg").then((data) => {
     d3.select("#map-container").node().append(data.documentElement);
     //append the scale for user for better understanding
@@ -195,24 +193,27 @@ function createHistogram(areaName) {
   const dataEntries = Object.entries(incomeData);
 
   const avgPrice2 = avgPropertyPriceMapping[areaName];
+  
+  const height = 350
+  const width = 350
 
   const histogramSvg = d3
     .create("svg")
-    .attr("width", 350)
-    .attr("height", 300)
-    .style("background-color", colorScale(avgPrice2)); // Set the background color
+    .attr("width", width)
+    .attr("height", height)
+    .style("background-color", colorScale(avgPrice2));
 
   // Create scales for your histogram based on the data
   const xScale = d3
     .scaleBand()
     .domain(dataEntries.map((d) => d[0]))
-    .range([0, 350])
+    .range([0, width])
     .padding(0.1);
 
   const yScale = d3
     .scaleLinear()
     .domain([0, d3.max(dataEntries, (d) => d[1] * 1.1)])
-    .range([300, 0]);
+    .range([height - 125, 0]);
 
   // Append the bars to the SVG
   histogramSvg
@@ -222,8 +223,8 @@ function createHistogram(areaName) {
     .append("rect")
     .attr("x", (d) => xScale(d[0]))
     .attr("y", (d) => yScale(d[1]))
-    .attr("width", xScale.bandwidth())
-    .attr("height", (d) => 300 - yScale(d[1]))
+    .attr("width", xScale.bandwidth()) // leaves room between bars
+    .attr("height", (d) => height - 125 - yScale(d[1]))
     .attr("fill", "steelblue");
 
   histogramSvg
@@ -233,9 +234,22 @@ function createHistogram(areaName) {
     .append("text")
     .attr("class", "bar-label")
     .attr("x", (d) => xScale(d[0]) + xScale.bandwidth() / 2)
-    .attr("y", (d) => yScale(d[1]) - 5) // adjust the 5 pixels offset as needed
+    .attr("y", (d) => yScale(d[1]) - 5)
     .attr("text-anchor", "middle")
-    .text((d) => d[1]); // This will display the count on top of each bar
+    .text((d) => d[1]); // display count on top of each
+    
+  // Append vertical labels
+  histogramSvg.selectAll(".label")
+              .data(dataEntries)
+              .enter()
+              .append("text")
+              .attr("class", "label")
+              .attr("x", d => xScale(d[0]) + xScale.bandwidth() / 2 + 120)
+              .attr("y", height)
+              .attr("text-anchor", "end")
+              .attr("transform", d => "rotate(-90," + (xScale(d[0]) + xScale.bandwidth() / 2) + "," + (height) + ")")
+              .text(d => d[0])
+              .style("font-size", "12px") ;
 
   return histogramSvg.node();
 }
@@ -319,12 +333,12 @@ function renderSelectedArea() {
   const container = d3.select("#comparison-data-container").node();
   container.innerHTML = "";
   selectedNeighborhoods.forEach((areaName) => {
-    const histogramSvg = createHistogram(areaName);
-
-    container.appendChild(histogramSvg);
-
     const heading = document.createElement("div");
     heading.innerHTML = `<h3>${areaName}</h3>`;
     container.appendChild(heading);
+
+    const histogramSvg = createHistogram(areaName);
+
+    container.appendChild(histogramSvg);
   });
 }
