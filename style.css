@@ -140,6 +140,7 @@ h3 {
 	grid-area: comparison;
 }
 
+<<<<<<< Updated upstream
 .button {
 	align-items: center;
 	background-clip: padding-box;
@@ -183,4 +184,21 @@ h3 {
 	background-color: #c85000;
 	box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
 	transform: translateY(0);
+=======
+.row {
+	display: flex;
+	justify-content: space-around; /* This will space your images evenly */
+	margin-bottom: 20px; /* This adds space between the rows */
+}
+
+.image-container {
+	width: 48%; /* This sets the container to take up half of the row's width */
+	display: flex;
+	justify-content: center; /* This will center the image in the container */
+}
+
+.image-container img {
+	width: 100%; /* This makes the image take up the full container width */
+	height: auto; /* This keeps the image aspect ratio intact */
+>>>>>>> Stashed changes
 }

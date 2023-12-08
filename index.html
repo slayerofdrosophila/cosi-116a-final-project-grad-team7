@@ -125,34 +125,75 @@
         </em></p>
 
       <h1>Data Analysis</h1>
-      <p><em>Summary of data, data types, and data preprocessing.</em></p>
-
-      <p><em>Expectation: Data sources match the problem statement and are appropriate. These descriptions should be
-          very explicit so someone could read your page and properly reproduce your results.</em></p>
+      <p><b>Boston Area House Prices:</b></p>
+      <p><em>We utilized a JSON dataset detailing average house prices across various Boston area cities. This data was processed to create a descending order bar chart, offering a clear visualization of property values across different locations.</em></p>
+      <p><b>Geographic Map of Boston Area:</b></p>
+      <p><em>The map, designed in Adobe XD and saved as an SVG file, visually represents the Boston area. It serves as a foundational element for contextualizing the spatial distribution of our analysis.</em></p>
+      <p><b>Income Group Distribution:</b></p>
+      <p><em>Data on the number of people in different income groups within Boston was stored in a CSV file. Basic preprocessing steps like header removal and trimming were applied to ensure data cleanliness and usability for analysis.</em></p>
 
       <h1>Task Analysis</h1>
-
-      <p><em>Summary of task table.</em></p>
-
-      <p><em>Expectation: Clearly describes domain tasks, processes, goals and abstract tasks for domain problems.</em>
       </p>
+      <table border="1">
+        <tr>
+          <th>Domain Task</th>
+          <th>Process</th>
+          <th>Goals</th>
+          <th>Abstract Tasks</th>
+        </tr>
+        <tr>
+          <td>Identifying Affordable Areas in Boston</td>
+          <td>
+            Users compare average house prices across various Boston areas using a bar chart.
+          </td>
+          <td>
+            To determine which areas in Boston are relatively more affordable for living.
+          </td>
+          <td>
+            compare, explore, discover
+          </td>
+        </tr>
+        <tr>
+          <td>Exploring Income Distribution in Specific Areas</td>
+          <td>
+            Users click on a specific area on the map to reveal the income distribution in that region.
+          </td>
+          <td>
+            To understand the economic demographics of a chosen area in Boston, aiding in decision-making for potential residency.
+          </td>
+          <td>
+            explore, discover, compare
+          </td>
+        </tr>
+      </table>
+      
 
       <h1>Design Process</h1>
-
-      <p><em>Sketches and design choices to justify final visualization.</em></p>
-
-      <p><em>Expectation: Evidence of iterative improvement.
-          Logical discussion of design choices grounded in theory from course.
-          Discusses feedback from usability testing.</em></p>
+      <div class="row">
+        <div class="image-container">
+          <img src="images/barSketch-1.jpg" alt="Image 1">
+        </div>
+        <div class="image-container">
+          <img src="images/barSketch-2.jpg" alt="Image 2">
+        </div>
+      </div>
+      <p>We streamlined our bar chart by using average prices for houses and apartments, eliminating the variability caused by different apartment types. This simplification, along with sorting the data in descending order, allows users to instantly recognize the areas with the highest and lowest living costs, facilitating quick and informed decisions.</p>
+      <div class="row">
+        <div class="image-container">
+          <img src="images/mapSketch-1.jpg" alt="Image 3">
+        </div>
+        <div class="image-container">
+          <img src="images/mapSketch-2.jpg" alt="Image 4">
+        </div>
+      </div>
+      <p>The final map provides a clear view of income distribution, enhancing users' understanding of each neighborhood's affordability. An interactive feature enables comparisons between areas, helping users to make better-informed decisions about where to live based on comprehensive economic data.</p>
 
 
       <h1>Conclusion</h1>
+      <p>In summary, our project successfully delivered a descriptive bar chart and an interactive map, enabling users to compare average property prices and income brackets across different areas in Boston. These tools provide valuable insights for potential residents evaluating the affordability of various neighborhoods.
 
-      <p><em>Short summary of work completed and areas for improvement/future-work.</em></p>
-
-      <p><em>Expectation: Meaningfully wraps up project and has good future directions.</em></p>
-
-
+        For future enhancements, we envision introducing a broader color palette to the map to represent data more distinctively. Enriching our dataset with additional parameters could provide deeper analytical capabilities. Furthermore, creating interactive links between the bar chart and map could offer users a more integrated experience, allowing for a seamless transition between different data representations. These improvements would significantly augment the user's ability to make well-informed housing decisions in the Boston area.</p>
+      
       <h1>Acknowledgments</h1>
 
       <p><em>List here where any code, packages/libraries, text, images, designs, etc. that you leverage come from.</em>
@@ -162,6 +203,7 @@
         <li><a href="https://d3js.org/">D3: Data-Driven Documents</a> by Mike Bostock.</li>
         <li><a href="https://codepo8.github.io/css-fork-on-github-ribbon/#">Pure CSS responsive "Fork me on GitHub"
             ribbon</a> by Chris Heilmann.</li>
+        <li><a href="https://chat.openai.com/">ChatGPT</a> by Microsoft</li>
       </ul>
 
     </div>
