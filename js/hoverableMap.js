@@ -127,8 +127,8 @@ function hoverEffects() {
 
       // Prepare the SVG for the histogram
       const histogramSvg = d3.create("svg")
-                             .attr("width", 300)
-                             .attr("height", 500);
+                             .attr("width", 350)
+                             .attr("height", 300);
 
       // Create scales for your histogram based on the data
       const xScale = d3.scaleBand()
@@ -170,6 +170,7 @@ function hoverEffects() {
               + "<h5> Household Income Distribution: </h5>")
              .style("left", (event.pageX + 10) + "px")
              .style("top", (event.pageY - 28) + "px");
+
       tooltip.node().appendChild(histogramSvg.node());
     })
     
@@ -184,15 +185,66 @@ function hoverEffects() {
 }
 
 
+function createHistogram(areaName) {
+  const incomeData = neighborhoodIncomeData[areaName] || {};
+  const dataEntries = Object.entries(incomeData);
+
+  const avgPrice2 = avgPropertyPriceMapping[areaName];
+
+  const histogramSvg = d3.create("svg")
+                         .attr("width", 350)
+                         .attr("height", 300)
+                         .style("background-color", colorScale(avgPrice2)); // Set the background color
+
+
+      // Create scales for your histogram based on the data
+      const xScale = d3.scaleBand()
+                       .domain(dataEntries.map(d => d[0]))
+                       .range([0, 350])
+                       .padding(0.1);
+
+      const yScale = d3.scaleLinear()
+                       .domain([0, d3.max(dataEntries, d => d[1]*1.1)])
+                       .range([300, 0]);
+
+      // Append the bars to the SVG
+      histogramSvg.selectAll("rect")
+                  .data(dataEntries)
+                  .enter()
+                  .append("rect")
+                  .attr("x", d => xScale(d[0]))
+                  .attr("y", d => yScale(d[1]))
+                  .attr("width", xScale.bandwidth())
+                  .attr("height", d => 300 - yScale(d[1]))
+                  .attr("fill", "steelblue");
+
+      histogramSvg.selectAll(".bar-label")
+                  .data(dataEntries)
+                  .enter()
+                  .append("text")
+                  .attr("class", "bar-label")
+                  .attr("x", d => xScale(d[0]) + xScale.bandwidth() / 2)
+                  .attr("y", d => yScale(d[1]) - 5) // adjust the 5 pixels offset as needed
+                  .attr("text-anchor", "middle")
+                  .text(d => d[1]); // This will display the count on top of each bar
+
+  return histogramSvg.node();
+}
+
+
+
 function updateComparisonContainer() {
-  const container = d3.select("#comparison-data-container");
-  container.html("");  // Clear previous content
+  const container = d3.select("#comparison-data-container").node();
+  container.innerHTML = "";  // Clear previous content
 
   selectedNeighborhoods.forEach(areaName => {
-      container.append("div")
-               .attr("class", "neighborhood-data")
-               .text(areaName + ": " + avgPropertyPriceMapping[areaName]);
-      // Add more details as needed
+    const histogramSvg = createHistogram(areaName);
+
+    container.appendChild(histogramSvg);
+
+    const heading = document.createElement("div");
+    heading.innerHTML = `<h3>${areaName}</h3>`;
+    container.appendChild(heading);
   });
 }
 
