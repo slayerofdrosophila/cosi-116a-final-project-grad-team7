@@ -54,7 +54,7 @@ d3.csv("files/combined_income_real_2021only.csv").then((data) => {
   neighborhoodHighLevelIncomeData['Mid Dorchester'] = {...neighborhoodHighLevelIncomeData['Dorchester']};
   neighborhoodHighLevelIncomeData['Mattapan'] = {...neighborhoodHighLevelIncomeData['Dorchester']};
 
-  d3.xml("images/boston.svg").then((data) => {
+  d3.xml("cosi-116a-final-project-grad-team7/images/boston.svg").then((data) => {
     d3.select("#map-container").node().append(data.documentElement);
     gradientScale();
     hoverEffects();
