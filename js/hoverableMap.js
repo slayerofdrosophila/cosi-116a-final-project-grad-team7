@@ -395,12 +395,6 @@ function renderSelectedArea() {
 function aggregateNeighborhoodData(neighborhood1, neighborhood2, neighborhoodIncomeData) {
   const aggregatedData = {};
 
-  console.log(neighborhood1)
-  console.log(neighborhood2)
-
-  console.log(neighborhoodIncomeData[neighborhood1])
-  console.log(neighborhoodIncomeData[neighborhood2])
-
   if (neighborhoodIncomeData[neighborhood2] == undefined){
     Object.keys(neighborhoodIncomeData[neighborhood1]).forEach(bracket => {
       aggregatedData[bracket] = (neighborhoodIncomeData[neighborhood1][bracket] || 0);
