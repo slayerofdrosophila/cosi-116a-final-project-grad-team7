@@ -1,4 +1,4 @@
-d3.json("../data/rentData.json", function (error, data) {
+d3.json("data/rentData.json", function (error, data) {
   if (error) throw error;
 
   //sort the data
